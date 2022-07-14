@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getPokemonsName } from "../actions/getPokemon";
 import { RootState } from "../store";
 
-type pokemonType = {
-    name: string,
+type pokemonType = {    
+    name?: string
 }
 
 export enum posibleStatus {
