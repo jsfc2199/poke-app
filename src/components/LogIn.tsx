@@ -27,8 +27,8 @@ const LogIn: React.FunctionComponent<ILogInProps> = (props) => {
     }
 
   return (
-    <div>
-        <button onClick={(e)=> logInFunction(e)}>Log In</button>
+    <div className="logInButton">
+        <button  onClick={(e)=> logInFunction(e)}>Log In</button>
     </div>
   )
 };

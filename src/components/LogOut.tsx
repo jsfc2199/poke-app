@@ -25,10 +25,8 @@ const LogOut: React.FunctionComponent<ILogOutProps> = (props) => {
         dispatch(logOutReducer())
         navigate("/logIn")
     }
-  return (
-    <div>
-         <button onClick={(e)=> logOutFunction(e)}>Log Out</button>
-    </div>
+  return (    
+         <button onClick={(e)=> logOutFunction(e)}>Log Out</button>    
   )
 };
 

@@ -17,10 +17,8 @@ const Pokemons: React.FunctionComponent<IPokemonsProps> = (props) => {
     }, [])
 
     return (
-        <div>
-            <button type="button" style={{textAlign: 'center', justifyContent: 'center', display: 'center'}}>
-                <LogOut />
-            </button>
+        <>
+            <LogOut />
             {pokemons.map((pokemon: any) => {
                 return (
                     <div key={pokemon.name}>
@@ -29,7 +27,7 @@ const Pokemons: React.FunctionComponent<IPokemonsProps> = (props) => {
                     </div>
                 )
             })}
-        </div>
+        </>
     )
 };
 

@@ -23,9 +23,9 @@ const PokemonInfo: React.FunctionComponent = () => {
     }, [])
 
     return (
-        <div>
-            <table className="justTable">
-                <thead className="justTableHead">
+        <div>                 
+            <table className="justTable">            
+                <thead className="justTableHead">                    
                     <tr>
                         <td>Name</td>
                         <td>Picture</td>
@@ -34,11 +34,10 @@ const PokemonInfo: React.FunctionComponent = () => {
                         <td>Weight</td>
                         <td>Height</td>
                         <td>Stats</td>
-
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr key={pokeInfo.name}>
                         <td>{pokeInfo.name}</td>
                         <td><img src={pokeInfo.sprites?.front_default} /></td>
                         <td><div>

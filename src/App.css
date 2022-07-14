@@ -160,6 +160,7 @@ footer {
 .filtergames {
   width: 100%;
   height: 50px;
+  margin-top: 30px;
   margin-bottom: 30px;
   padding: 3px 15px;
   font-style: italic;
@@ -447,4 +448,10 @@ body {
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   opacity: 1;
+}
+
+.logInButton {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;  
 }
