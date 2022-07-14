@@ -131,18 +131,21 @@ footer {
   width: 100%;
   border: 1px solid #000;
   border-radius: 8px;
+  
 }
 
 .justTableHead {
   width: 100%;
   border: 1px solid #000;
   border-radius: 8px;
-  background: gray
+  background: gray;
+  
 }
 
 .justBody {
   font-style: italic;
   color: black;
+  column-width: 750px
 
 }
 

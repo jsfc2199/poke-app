@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface IDisplayPokeInfoProps {
     id: number;
@@ -26,11 +27,13 @@ const DisplayPokeInfo: React.FunctionComponent<{ name: string }> = ({ name }) =>
                     <tr>
                         <td>Name</td>
                         <td>Picture</td>
-                        <td>Type</td>                        
+                        <td>Type</td>
+                        <td>Pokemon Info</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
+
                         <td>{pokeInfo.name}</td>
                         <td><img src={pokeInfo.sprites?.front_default} /></td>
                         <td><div>
@@ -39,7 +42,13 @@ const DisplayPokeInfo: React.FunctionComponent<{ name: string }> = ({ name }) =>
                                     <p key={pokemon.type.name}>{pokemon.type.name}</p>
                                 )
                             })}
-                        </div></td>                        
+                        </div></td>
+                        <td>
+                            <button type="button">
+                                <Link to='/pokemonInfo' style={{ textDecoration: 'none' }} state={{ statePoke: name }}> See Pokemon Info</Link>
+                            </button>
+                        </td>
+
                     </tr>
                 </tbody>
 
