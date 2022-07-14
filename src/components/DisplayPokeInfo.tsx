@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { RootState } from '../store';
+import LogOut from './LogOut';
 
 interface IDisplayPokeInfoProps {
     id: number;
@@ -20,8 +23,19 @@ const DisplayPokeInfo: React.FunctionComponent<{ name: string }> = ({ name }) =>
             .then(data => setPokeInfo(data))
     }, [])
 
+    const navigate = useNavigate()
+
+    const {user} = useSelector((state:RootState)=>state.logged)
+
+    useEffect(()=>{
+        if(user===false){
+            navigate('/logIn')
+        }
+    })
+
     return (
         <div>
+           
             <table className="justTable">
                 <thead className="justTableHead">
                     <tr>
@@ -43,8 +57,8 @@ const DisplayPokeInfo: React.FunctionComponent<{ name: string }> = ({ name }) =>
                                 )
                             })}
                         </div></td>
-                        <td>
-                            <button type="button">
+                        <td >
+                            <button type="button" className="theButton2">
                                 <Link to='/pokemonInfo' style={{ textDecoration: 'none' }} state={{ statePoke: name }}> See Pokemon Info</Link>
                             </button>
                         </td>

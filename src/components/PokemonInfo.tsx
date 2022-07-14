@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { RootState } from '../store';
 
 interface IPokemonInfoProps {
     statePoke: string
@@ -9,11 +11,7 @@ interface IPokemonInfoProps {
 const PokemonInfo: React.FunctionComponent = () => {
     const location = useLocation()
     const state = location.state as IPokemonInfoProps
-    const {statePoke} = state
-
-    console.log(statePoke)
-
-
+    const { statePoke } = state
     const [pokeInfo, setPokeInfo] = useState({}) as any
 
     const url = `https://pokeapi.co/api/v2/pokemon/${statePoke}`
@@ -24,50 +22,51 @@ const PokemonInfo: React.FunctionComponent = () => {
             .then(data => setPokeInfo(data))
     }, [])
 
-    //console.log(pokeInfo)
-
     return (
         <div>
-        <table className="justTable">
-            <thead className="justTableHead">
-                <tr>
-                    <td>Name</td>
-                    <td>Picture</td>
-                    <td>Type</td> 
-                    <td>Base Experience</td>
-                    <td>Weight</td>
-                    <td>Height</td>
-                    <td>Health Points</td>
-                    <td>Attack</td>
-                    <td>Defense</td>
-                    <td>Special Attack</td>
-                    <td>Special Defense</td>
-                    <td>Speed</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{pokeInfo.name}</td>
-                    <td><img src={pokeInfo.sprites?.front_default} /></td>
-                    <td><div>
-                        {pokeInfo.types?.map((pokemon: any) => {
-                            return (
-                                <p key={pokemon.type.name}>{pokemon.type.name}</p>
-                            )
-                        })}
-                    </div></td>
-                    <td>{pokeInfo.base_experience}</td>
-                    <td>{pokeInfo.weight}</td>
-                    <td>{pokeInfo.height}</td>
-                    <td>{pokeInfo.stats?.map((stat:any)=>{
-                        console.log(stat    )
-                    })}</td>
-                </tr>
-            </tbody>
+            <table className="justTable">
+                <thead className="justTableHead">
+                    <tr>
+                        <td>Name</td>
+                        <td>Picture</td>
+                        <td>Type</td>
+                        <td>Base Experience</td>
+                        <td>Weight</td>
+                        <td>Height</td>
+                        <td>Stats</td>
 
-        </table>
-    </div>
-  )
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{pokeInfo.name}</td>
+                        <td><img src={pokeInfo.sprites?.front_default} /></td>
+                        <td><div>
+                            {pokeInfo.types?.map((pokemon: any) => {
+                                return (
+                                    <p key={pokemon.type.name}>{pokemon.type.name}</p>
+                                )
+                            })}
+                        </div></td>
+                        <td>{pokeInfo.base_experience}</td>
+                        <td>{pokeInfo.weight}</td>
+                        <td>{pokeInfo.height}</td>
+                        <td>{pokeInfo.stats?.map((stat: any) => {
+                            return (
+                                <p>{stat.base_stat} -{'>'} {stat.stat.name}</p>
+                            )
+                        })}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div>
+                <button type='button' className='theButton'>
+                    <Link to='/' style={{ textDecoration: 'none' }}> Go back</Link>
+                </button>
+            </div>
+        </div>
+    )
 };
 
 export default PokemonInfo;
