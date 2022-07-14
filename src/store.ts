@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
-import pokemonReducer from './state/pokemonSlice'
+
 
 
 const store = configureStore ({
     reducer:{
-        pokemons: pokemonReducer,
+
     }
 })
 
