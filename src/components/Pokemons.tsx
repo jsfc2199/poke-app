@@ -22,7 +22,6 @@ const Pokemons: React.FunctionComponent<IPokemonsProps> = (props) => {
             {pokemons.map((pokemon: any) => {
                 return (
                     <div key={pokemon.name}>
-
                         <DisplayPokeInfo name={pokemon.name} />
                     </div>
                 )

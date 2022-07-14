@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import DisplayPokeInfo from './DisplayPokeInfo';
 import PokemonInfo from './PokemonInfo';
+import Pokemons from './Pokemons';
 
 interface IFilterPokemonsProps {
 }
@@ -23,10 +24,8 @@ const FilterPokemons: React.FunctionComponent<IFilterPokemonsProps> = (props) =>
 
     const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         let filter = pokemons.filter((pokemon: any) => pokemon.name?.includes(e.target.value))
-        console.log('este es el filtro', filter);
+        console.log(e.target.value);
         setfilteredPokemons(filter)
-        //console.log('este es el valor final',filteredPokemons); 
-
     }
 
     return (
@@ -35,18 +34,14 @@ const FilterPokemons: React.FunctionComponent<IFilterPokemonsProps> = (props) =>
                 <input className='filtergames' type='text' placeholder='Filter Pokemons' onChange={(e) => onSearch(e)} />
             </div>
             <div>
-                {
-                    filteredPokemons.map((pokemon: any) => {
-                        console.log(pokemon);
-
-                        return <div>
-                           {pokemon.name}
-                        </div>
-                    }
-
-                    )
-
-                }
+                {filteredPokemons.map((pokemon: any) => {
+                    return <div key={pokemon.name}>
+                        <DisplayPokeInfo name={pokemon.name} />
+                    </div>
+                })}
+            </div>
+            <div>
+                <h2 hidden={filteredPokemons.length !== 0}>There is no pokemon with that name</h2>
             </div>
             <div>
                 <button type='button' className='theButton'>

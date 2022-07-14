@@ -35,7 +35,6 @@ const DisplayPokeInfo: React.FunctionComponent<{ name: string }> = ({ name }) =>
 
     return (
         <div>
-           
             <table className="justTable">
                 <thead className="justTableHead">
                     <tr>
