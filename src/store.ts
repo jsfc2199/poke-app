@@ -2,12 +2,11 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
 
-
 const store = configureStore ({
     reducer:{
 
-    }
-})
+    },
+});
 
 export default store
 export type RootState = ReturnType<typeof store.getState>;
