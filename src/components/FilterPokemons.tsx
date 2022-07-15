@@ -21,8 +21,7 @@ const FilterPokemons: React.FunctionComponent<IFilterPokemonsProps> = (props) =>
 
     const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         let filter = pokemons.filter((pokemon: any) => pokemon.name?.includes(e.target.value))
-        console.log(filter);
-
+       
         if (filter.length === 50) {
             setfilteredPokemons([])
         } else {
@@ -39,7 +38,7 @@ const FilterPokemons: React.FunctionComponent<IFilterPokemonsProps> = (props) =>
             navigate('/logIn')
         }
     })
-    
+
     return (
         <div>
             <div>
