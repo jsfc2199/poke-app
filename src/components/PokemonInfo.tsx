@@ -29,7 +29,7 @@ const PokemonInfo: React.FunctionComponent = () => {
 
                 <figcaption className="card__caption">
                     <h3 className="card__type">
-                        {pokeInfo.name}
+                        <b>{pokeInfo.name}</b>
                     </h3>
                     <table className="card__stats">
                         <tbody>
@@ -47,7 +47,7 @@ const PokemonInfo: React.FunctionComponent = () => {
                             return (
                                 <div key={pokemon.type.name}>
                                     <h4 className="card__ability">
-                                        <span className="card__label">{pokemon.type.name}</span>
+                                        <span className="card__label"><b>{pokemon.type.name}</b></span>
                                     </h4>
                                 </div>
                             )

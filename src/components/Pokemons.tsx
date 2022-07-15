@@ -22,7 +22,7 @@ const Pokemons: React.FunctionComponent<IPokemonsProps> = (props) => {
             <br></br>
             {pokemons.map((pokemon: any) => {
                 return (
-                    <div key={pokemon.name} style={{display: 'inline-flex', flexDirection:'row'}}>
+                    <div key={pokemon.name} style={{ display: 'inline-flex', flexDirection: 'row' }}>
                         <DisplayPokeInfo name={pokemon.name} />
                     </div>
                 )

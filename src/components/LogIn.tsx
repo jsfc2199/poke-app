@@ -12,25 +12,25 @@ const LogIn: React.FunctionComponent<ILogInProps> = (props) => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const {user} = useSelector((state:RootState)=>state.logged)
+    const { user } = useSelector((state: RootState) => state.logged)
 
     useEffect(() => {
-        if(user!==false){
+        if (user !== false) {
             navigate("/")
         }
     }, [])
 
-    const logInFunction=(e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
+    const logInFunction = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         const user = true;
         dispatch(logInReducer(user))
         navigate("/")
     }
 
-  return (
-    <div >
-        <button  onClick={(e)=> logInFunction(e)} className="theButton2"><b>Log In</b></button>
-    </div>
-  )
+    return (
+        <div >
+            <button onClick={(e) => logInFunction(e)} className="theButton2"><b>Log In</b></button>
+        </div>
+    )
 };
 
 export default LogIn;

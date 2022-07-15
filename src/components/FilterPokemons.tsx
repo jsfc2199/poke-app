@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { RootState } from '../store';
 import DisplayPokeInfo from './DisplayPokeInfo';
@@ -21,19 +21,25 @@ const FilterPokemons: React.FunctionComponent<IFilterPokemonsProps> = (props) =>
 
     const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         let filter = pokemons.filter((pokemon: any) => pokemon.name?.includes(e.target.value))
-        setfilteredPokemons(filter)
+        console.log(filter);
+
+        if (filter.length === 50) {
+            setfilteredPokemons([])
+        } else {
+            setfilteredPokemons(filter)
+        }
     }
 
     const navigate = useNavigate()
 
-    const {user} = useSelector((state:RootState)=>state.logged)
+    const { user } = useSelector((state: RootState) => state.logged)
 
-    React.useEffect(()=>{
-        if(user===false){
+    React.useEffect(() => {
+        if (user === false) {
             navigate('/logIn')
         }
     })
-
+    
     return (
         <div>
             <div>
@@ -46,7 +52,7 @@ const FilterPokemons: React.FunctionComponent<IFilterPokemonsProps> = (props) =>
             </div>
             <div>
                 {filteredPokemons.map((pokemon: any) => {
-                    return <div key={pokemon.name} style={{display: 'inline-flex', flexDirection:'row'}}>
+                    return <div key={pokemon.name} style={{ display: 'inline-flex', flexDirection: 'row' }}>
                         <DisplayPokeInfo name={pokemon.name} />
                     </div>
                 })}
@@ -54,9 +60,11 @@ const FilterPokemons: React.FunctionComponent<IFilterPokemonsProps> = (props) =>
             <div>
                 <h2 hidden={filteredPokemons.length !== 0}>There is no pokemon with that name</h2>
             </div>
-            
+
         </div>
     )
 };
 
 export default FilterPokemons;
+
+

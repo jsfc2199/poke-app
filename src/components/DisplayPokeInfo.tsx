@@ -36,9 +36,9 @@ const DisplayPokeInfo: React.FunctionComponent<{ name: string }> = ({ name }) =>
                 </div>
 
                 <figcaption className="card__caption">
-                    
+
                     <h3 className="card__type">
-                        {pokeInfo.name}
+                        <b>{pokeInfo.name}</b>
                     </h3>
 
                     <div className="card__abilities">
@@ -47,13 +47,13 @@ const DisplayPokeInfo: React.FunctionComponent<{ name: string }> = ({ name }) =>
                             return (
                                 <div key={pokemon.type.name}>
                                     <h4 className="card__ability">
-                                        <span className="card__label">{pokemon.type.name}</span>
+                                       <span className="card__label"><b>{pokemon.type.name}</b></span>
                                     </h4>
                                 </div>
                             )
                         })}
                     </div>
-                    
+
                     <button type="button" className="theButton2">
                         <Link to='/pokemonInfo' style={{ textDecoration: 'none' }} state={{ statePoke: name }}> <b>See Pokemon Info</b></Link>
                     </button>
