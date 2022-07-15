@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { RootState } from '../store';
 import DisplayPokeInfo from './DisplayPokeInfo';
-import PokemonInfo from './PokemonInfo';
-import Pokemons from './Pokemons';
 
 interface IFilterPokemonsProps {
 }
@@ -11,9 +11,6 @@ interface IFilterPokemonsProps {
 const FilterPokemons: React.FunctionComponent<IFilterPokemonsProps> = (props) => {
     const [pokemons, setPokemons] = React.useState([])
     const [filteredPokemons, setfilteredPokemons] = useState([])
-
-
-    const [searchTerm, setSearchTerm] = useState('')
 
     const url = "https://pokeapi.co/api/v2/pokemon/?limit=50"
     React.useEffect(() => {
@@ -24,18 +21,32 @@ const FilterPokemons: React.FunctionComponent<IFilterPokemonsProps> = (props) =>
 
     const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         let filter = pokemons.filter((pokemon: any) => pokemon.name?.includes(e.target.value))
-        console.log(e.target.value);
         setfilteredPokemons(filter)
     }
 
+    const navigate = useNavigate()
+
+    const {user} = useSelector((state:RootState)=>state.logged)
+
+    React.useEffect(()=>{
+        if(user===false){
+            navigate('/logIn')
+        }
+    })
+
     return (
         <div>
+            <div>
+                <button type='button' className='theButton2'>
+                    <Link to='/' style={{ textDecoration: 'none' }}> <b>Go back</b></Link>
+                </button>
+            </div>
             <div>
                 <input className='filtergames' type='text' placeholder='Filter Pokemons' onChange={(e) => onSearch(e)} />
             </div>
             <div>
                 {filteredPokemons.map((pokemon: any) => {
-                    return <div key={pokemon.name}>
+                    return <div key={pokemon.name} style={{display: 'inline-flex', flexDirection:'row'}}>
                         <DisplayPokeInfo name={pokemon.name} />
                     </div>
                 })}
@@ -43,12 +54,7 @@ const FilterPokemons: React.FunctionComponent<IFilterPokemonsProps> = (props) =>
             <div>
                 <h2 hidden={filteredPokemons.length !== 0}>There is no pokemon with that name</h2>
             </div>
-            <div>
-                <button type='button' className='theButton'>
-                    <Link to='/' style={{ textDecoration: 'none' }}> Go back</Link>
-                </button>
-            </div>
-
+            
         </div>
     )
 };

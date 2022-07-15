@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { RootState } from '../store';
+import { Link, useLocation } from 'react-router-dom';
 
 interface IPokemonInfoProps {
     statePoke: string
@@ -23,45 +21,45 @@ const PokemonInfo: React.FunctionComponent = () => {
     }, [])
 
     return (
-        <div>                 
-            <table className="justTable">            
-                <thead className="justTableHead">                    
-                    <tr>
-                        <td>Name</td>
-                        <td>Picture</td>
-                        <td>Type</td>
-                        <td>Base Experience</td>
-                        <td>Weight</td>
-                        <td>Height</td>
-                        <td>Stats</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr key={pokeInfo.name}>
-                        <td>{pokeInfo.name}</td>
-                        <td><img src={pokeInfo.sprites?.front_default} /></td>
-                        <td><div>
-                            {pokeInfo.types?.map((pokemon: any) => {
-                                return (
-                                    <p key={pokemon.type.name}>{pokemon.type.name}</p>
-                                )
+        <div id="cards">
+            <figure className="card card--normal">
+                <div className="card__image-container">
+                    <img src={pokeInfo.sprites?.front_default} alt={pokeInfo.name} className="card__image" />
+                </div>
+
+                <figcaption className="card__caption">
+                    <h3 className="card__type">
+                        {pokeInfo.name}
+                    </h3>
+                    <table className="card__stats">
+                        <tbody>
+                            {pokeInfo.stats?.map((stat: any) => {
+                                return <tr>
+                                    <th><b>{stat.stat.name}</b></th>
+                                    <td>{stat.base_stat}</td>
+                                </tr>
                             })}
-                        </div></td>
-                        <td>{pokeInfo.base_experience}</td>
-                        <td>{pokeInfo.weight}</td>
-                        <td>{pokeInfo.height}</td>
-                        <td>{pokeInfo.stats?.map((stat: any) => {
+                        </tbody>
+                    </table>
+                    <div className="card__abilities">
+
+                        {pokeInfo.types?.map((pokemon: any) => {
                             return (
-                                <p>{stat.base_stat} -{'>'} {stat.stat.name}</p>
+                                <div key={pokemon.type.name}>
+                                    <h4 className="card__ability">
+                                        <span className="card__label">{pokemon.type.name}</span>
+                                    </h4>
+                                </div>
                             )
-                        })}</td>
-                    </tr>
-                </tbody>
-            </table>
+                        })}
+                    </div>
+
+                </figcaption>
+            </figure>
 
             <div>
-                <button type='button' className='theButton'>
-                    <Link to='/' style={{ textDecoration: 'none' }}> Go back</Link>
+                <button type='button' className='theButton2'>
+                    <Link to='/' style={{ textDecoration: 'none' }}> <b>Go back</b></Link>
                 </button>
             </div>
         </div>

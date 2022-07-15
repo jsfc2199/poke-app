@@ -19,9 +19,10 @@ const Pokemons: React.FunctionComponent<IPokemonsProps> = (props) => {
     return (
         <>
             <LogOut />
+            <br></br>
             {pokemons.map((pokemon: any) => {
                 return (
-                    <div key={pokemon.name}>
+                    <div key={pokemon.name} style={{display: 'inline-flex', flexDirection:'row'}}>
                         <DisplayPokeInfo name={pokemon.name} />
                     </div>
                 )

@@ -26,7 +26,7 @@ const LogOut: React.FunctionComponent<ILogOutProps> = (props) => {
         navigate("/logIn")
     }
   return (    
-         <button onClick={(e)=> logOutFunction(e)}>Log Out</button>    
+         <button onClick={(e)=> logOutFunction(e)} className="theButton2"><b>Log Out</b></button>    
   )
 };
 

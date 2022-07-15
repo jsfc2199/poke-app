@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { RootState } from '../store';
-import LogOut from './LogOut';
 
-interface IDisplayPokeInfoProps {
-    id: number;
-    name: string;
-    pic: string;
-    types: string
-}
+
 
 const DisplayPokeInfo: React.FunctionComponent<{ name: string }> = ({ name }) => {
 
@@ -25,47 +19,47 @@ const DisplayPokeInfo: React.FunctionComponent<{ name: string }> = ({ name }) =>
 
     const navigate = useNavigate()
 
-    const {user} = useSelector((state:RootState)=>state.logged)
+    const { user } = useSelector((state: RootState) => state.logged)
 
-    useEffect(()=>{
-        if(user===false){
+    useEffect(() => {
+        if (user === false) {
             navigate('/logIn')
         }
     })
 
     return (
-        <div>
-            <table className="justTable">
-                <thead className="justTableHead">
-                    <tr>
-                        <td>Name</td>
-                        <td>Picture</td>
-                        <td>Type</td>
-                        <td>Pokemon Info</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
+        <div id="cards">
+            <figure className="card card--normal">
 
-                        <td>{pokeInfo.name}</td>
-                        <td><img src={pokeInfo.sprites?.front_default} /></td>
-                        <td><div>
-                            {pokeInfo.types?.map((pokemon: any) => {
-                                return (
-                                    <p key={pokemon.type.name}>{pokemon.type.name}</p>
-                                )
-                            })}
-                        </div></td>
-                        <td >
-                            <button type="button" className="theButton2">
-                                <Link to='/pokemonInfo' style={{ textDecoration: 'none' }} state={{ statePoke: name }}> See Pokemon Info</Link>
-                            </button>
-                        </td>
+                <div className="card__image-container">
+                    <img src={pokeInfo.sprites?.front_default} alt={pokeInfo.name} className="card__image" />
+                </div>
 
-                    </tr>
-                </tbody>
+                <figcaption className="card__caption">
+                    
+                    <h3 className="card__type">
+                        {pokeInfo.name}
+                    </h3>
 
-            </table>
+                    <div className="card__abilities">
+
+                        {pokeInfo.types?.map((pokemon: any) => {
+                            return (
+                                <div key={pokemon.type.name}>
+                                    <h4 className="card__ability">
+                                        <span className="card__label">{pokemon.type.name}</span>
+                                    </h4>
+                                </div>
+                            )
+                        })}
+                    </div>
+                    
+                    <button type="button" className="theButton2">
+                        <Link to='/pokemonInfo' style={{ textDecoration: 'none' }} state={{ statePoke: name }}> <b>See Pokemon Info</b></Link>
+                    </button>
+
+                </figcaption>
+            </figure>
         </div>
     )
 };
