@@ -20,7 +20,7 @@ const FilterPokemons: React.FunctionComponent<IFilterPokemonsProps> = (props) =>
     }, [])
 
     const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let filter = pokemons.filter((pokemon: any) => pokemon.name?.includes(e.target.value))
+        let filter = pokemons.filter((pokemon: any) => pokemon.name?.includes(e.target.value.toLowerCase()))
        
         if (filter.length === 50) {
             setfilteredPokemons([])
